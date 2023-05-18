@@ -2,3 +2,7 @@
 node_modules
 .cache
 .parcel-cache
+<<<<<<< Updated upstream
+=======
+dist/
+>>>>>>> Stashed changes
