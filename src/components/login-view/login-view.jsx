@@ -4,14 +4,14 @@ import { useState } from "react";
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
+
     const handleSubmit = (event) => {
         // This prevent default behavior
         event.preventDefault();
 
         const data = {
-            username: username,
-            password: password
+            Username: username,
+            Password: password
         };
 
         fetch('https://myflix-88009.herokuapp.com/login', {
@@ -31,7 +31,8 @@ export const LoginView = ({ onLoggedIn }) => {
                 }
             })
             .catch((e) => {
-                alert('Something went wrong');
+                console.log(JSON.stringify(data))
+                // alert('Something went wrong');
             });
         
     };
