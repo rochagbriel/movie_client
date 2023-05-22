@@ -4,6 +4,7 @@ import { useState } from "react";
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    
     const handleSubmit = (event) => {
         // This prevent default behavior
         event.preventDefault();
@@ -15,14 +16,24 @@ export const LoginView = ({ onLoggedIn }) => {
 
         fetch('https://myflix-88009.herokuapp.com/login', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(data)
-        }).then((response) => {
-            if (response.ok) {
-                onLoggedIn(username);
-            } else {
-                alert('Login Failed!');
-            }
-        });
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Login response: ', data);
+                if (data.user) {
+                    onLoggedIn(data.user, data.token);
+                } else {
+                    alert('No such user');
+                }
+            })
+            .catch((e) => {
+                alert('Something went wrong');
+            });
+        
     };
 
     return (
