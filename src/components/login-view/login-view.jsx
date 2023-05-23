@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState('');
@@ -33,8 +32,7 @@ export const LoginView = ({ onLoggedIn }) => {
                 }
             })
             .catch((e) => {
-                console.log(JSON.stringify(data))
-                // alert('Something went wrong');
+                console.error('Login error: ', e)
             });
         
     };
