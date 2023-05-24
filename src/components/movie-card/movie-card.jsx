@@ -14,9 +14,9 @@ export const MovieCard = ({ movie, onMovieClick }) => {
           src={movie.image}
           className='border'
         />
-        <Card.Body>
+        <Card.Body className='text-center'>
           <Card.Title>{movie.title}</Card.Title>
-          <Card.Text>{movie.director}</Card.Text>
+          <Card.Text>{movie.genre}</Card.Text>
         </Card.Body>
       </Card>
     );

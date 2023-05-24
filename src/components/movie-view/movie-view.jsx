@@ -1,10 +1,10 @@
-import Button from "react-bootstrap/Button";
+import Button from 'react-bootstrap/Button';
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
       <div>
         <div>
-          <img className="w-100 border" src={movie.image} />
+          <img className='w-100 border' src={movie.image} />
         </div>
         <div>
           <span>Title: </span>
