@@ -1,3 +1,6 @@
+$primary: #2F2359;
+$body-bg: #F2F2F2;
+
 @import '~bootstrap/scss/bootstrap.scss';
 
 /* Color Theme Swatches in Hex */
@@ -13,9 +16,3 @@ $color-theme_MyFlix-Logo-5-hex: #F2F2F2;
 // $color-theme_MyFlix-Logo-3-hsla: hsla(173, 57, 47, 1);
 // $color-theme_MyFlix-Logo-4-hsla: hsla(173, 49, 70, 1);
 // $color-theme_MyFlix-Logo-5-hsla: hsla(0, 0, 94, 1);
-
-$color: steelblue;
-
-.my-flix {
-    color: $color;
-}
