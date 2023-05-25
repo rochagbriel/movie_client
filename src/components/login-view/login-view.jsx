@@ -40,8 +40,8 @@ export const LoginView = ({ onLoggedIn }) => {
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-
+        <Form className='border border-3 rounded px-5 py-4' onSubmit={handleSubmit}>
+            <h2 className='text-center' >Sign in</h2>
             <Form.Group controlId='formUsername'>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
@@ -53,14 +53,14 @@ export const LoginView = ({ onLoggedIn }) => {
             </Form.Group>
 
             <Form.Group controlId='formPassword'>
-                <Form.Label>Password:</Form.Label>
+                <Form.Label className='mt-2'>Password:</Form.Label>
                 <Form.Control
                     type='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}required
                 />
             </Form.Group>
-            <Button variant='primary' type='submit'>Submit</Button>
+            <Button className='mt-3 w-100' variant='primary' type='submit'>Submit</Button>
         </Form>
     );
 };
