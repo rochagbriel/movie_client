@@ -1,58 +1,80 @@
 import { UserInfo } from "./user-info";
-import { Col, Button } from 'react-bootstrap';
+import { Col, Container, Row } from "react-bootstrap";
 import { UserEdit } from "./user-edit";
 import { MovieCard } from "../movie-card/movie-card";
+import { Link } from "react-router-dom";
 
-export const ProfileView = ({user, token, movies, updateUser, onLoggedOut}) => {
-
-    let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id))
+export const ProfileView = ({
+    user,
+    token,
+    movies,
+    updateUser,
+    onLoggedOut,
+}) => {
+    let favoriteMovies = movies.filter((movie) =>
+        user.FavoriteMovies.includes(movie.id)
+    );
 
     const deleteAccount = () => {
-
-        fetch(`https://myflixapi-11d1.onrender.com/users/${user._id}`, {
+        fetch(`https://myflix-88009.herokuapp.com/users/${user._id}`, {
             method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token}` },
         })
-        .then(response => {
-            if (response.ok) {
-                alert("Your account has been deleted. Good Bye!");
-                onLoggedOut();
-            } else {
-                alert("Could not delete account");
-            }
-        })
-        .catch(e => {
-            alert(e);
-        });
-    }
+            .then((response) => {
+                if (response.ok) {
+                    alert("Your account has been deleted. Good Bye!");
+                    onLoggedOut();
+                } else {
+                    alert("Could not delete account");
+                }
+            })
+            .catch((e) => {
+                alert(e);
+            });
+    };
 
     return (
         <>
-            <Col>
+            <Col xxl={4} xl={5} lg={6} md={12} xs={12} className="px-4 text-primary">
                 <UserInfo user={user} />
-                <UserEdit user={user} token={token} updateUser={updateUser} onLoggedOut={onLoggedOut}/>
-                <Button
-                    className='mt-5'
-                    variant='danger'
-                    type='submit'
+                <UserEdit
+                    user={user}
+                    token={token}
+                    updateUser={updateUser}
+                    onLoggedOut={onLoggedOut}
+                />
+                <Link
+                    className="link-danger text-decoration-none w-100 text-end fs-6"
+                    variant="link-danger"
+                    type="submit"
                     onClick={() => {
-                        if (confirm('Are you sure you want to remove your account from our site?')) {
+                        if (
+                            confirm(
+                                "Are you sure you want to remove your account from our site?"
+                            )
+                        ) {
                             deleteAccount();
                         }
                     }}
                 >
-                    Delete your Account
-                </Button>
+                    Remove account permanenty
+                </Link>
             </Col>
-
-            <Col md={12}>
-                <h3 className="mt-3 mb-3 text-light">Your favorite movies:</h3>
-            </Col>
-                {favoriteMovies.map(movie => (
-            <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
-                <MovieCard movie={movie} />
-            </Col>
-            ))}
+            <Container className="bg-light mb-4 px-4 rounded-4">
+                <h3 className="mt-4 pt-4 mb-3 text-primary">
+                    Your favorite movies:
+                </h3>
+                <Row>
+                    {favoriteMovies.map((movie) => (
+                        <Col className="mb-4 " 
+                                key={movie.id}
+                                xxl={3} xl={4} lg={4} md={6} xs={12}
+                                >
+                            <MovieCard movie={movie} />
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
         </>
     );
-}
+};

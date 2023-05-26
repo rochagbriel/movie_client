@@ -1,8 +1,8 @@
 $primary: #2F2359;
 $secondary: #34c6bf;
-$light: #8FD9D1;
+$light: #d4eeeb;
 $dark: #277A8C;
-$body-bg: #F2F2F2;
+$body-bg: #e5f4f2;
 
 @import '~bootstrap/scss/bootstrap.scss';
 
@@ -19,3 +19,11 @@ $color-theme_MyFlix-Logo-5-hex: #F2F2F2;
 // $color-theme_MyFlix-Logo-3-hsla: hsla(173, 57, 47, 1);
 // $color-theme_MyFlix-Logo-4-hsla: hsla(173, 49, 70, 1);
 // $color-theme_MyFlix-Logo-5-hsla: hsla(0, 0, 94, 1);
+
+.link-header-light {
+    color: $white
+}
+
+.link-header-light:hover, .link-header-light:focus-within {
+    color: $primary
+}
