@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { UserEdit } from "./user-edit";
 import { MovieCard } from "../movie-card/movie-card";
 import { Link } from "react-router-dom";
+import { FavoriteMovies } from "./favorite-movies";
 
 export const ProfileView = ({
     user,
@@ -11,9 +12,6 @@ export const ProfileView = ({
     updateUser,
     onLoggedOut,
 }) => {
-    let favoriteMovies = movies.filter((movie) =>
-        user.FavoriteMovies.includes(movie.id)
-    );
 
     const deleteAccount = () => {
         fetch(`https://myflix-88009.herokuapp.com/users/${user._id}`, {
@@ -61,19 +59,7 @@ export const ProfileView = ({
                 </Link>
             </Col>
             <Container className="bg-light mb-4 px-4 rounded-4">
-                <h3 className="mt-4 pt-4 mb-3 text-primary">
-                    Your favorite movies:
-                </h3>
-                <Row>
-                    {favoriteMovies.map((movie) => (
-                        <Col className="mb-4 " 
-                                key={movie.id}
-                                xxl={3} xl={4} lg={4} md={6} xs={12}
-                                >
-                            <MovieCard movie={movie} />
-                        </Col>
-                    ))}
-                </Row>
+                <FavoriteMovies movies={movies} user={user} />
             </Container>
         </>
     );
