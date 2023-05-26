@@ -48,6 +48,7 @@ export const LoginView = ({ onLoggedIn }) => {
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                     type="text"
+                    autoComplete="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -59,6 +60,7 @@ export const LoginView = ({ onLoggedIn }) => {
                 <Form.Label className="mt-2">Password:</Form.Label>
                 <Form.Control
                     type="password"
+                    autoComplete="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required

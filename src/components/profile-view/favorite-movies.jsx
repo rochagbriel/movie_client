@@ -13,7 +13,7 @@ export const FavoriteMovies = ({movies, user}) => {
             </h3>
             <Row>
                 {favoriteMovies.map((movie) => (
-                    <Col className="mb-4 " 
+                    <Col className="mb-4 mx-auto" 
                             key={movie.id}
                             xxl={3} xl={4} lg={4} md={6} xs={12}
                             >

@@ -45,6 +45,7 @@ export const SignupView = () => {
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                     type="text"
+                    autoComplete="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -56,6 +57,7 @@ export const SignupView = () => {
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                     type="password"
+                    autoComplete="new-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required

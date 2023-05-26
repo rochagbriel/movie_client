@@ -22,15 +22,15 @@ export const MovieCard = ({ movie }) => {
 
 // Props Constraints for the MovieCard
 MovieCard.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        director: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-        }),
-        genre: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-        }),
-    }).isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+    genre: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
