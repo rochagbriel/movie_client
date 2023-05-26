@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
-export const SignupView = () => {
+
+export const UserEdit = ({user, token, updateUser, onLoggedOut}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -11,40 +11,49 @@ export const SignupView = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const data = {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
+        const data = {}
+
+        if (username !== '') {
+            data.Username = username
+        } else if (email !== '') {
+            data.Email = email
+        } else if (password !== '') {
+            data.Password = password
+        } else if (birthday !== '') {
+            data.Birthday = birthday
+        } else {
+            alert('Nothing to change!')
         }
 
-        fetch('https://myflix-88009.herokuapp.com/users', {
-            method: 'POST',
+        fetch(`https://myflix-88009.herokuapp.com/users/${user._id}`, {
+            method: 'PUT',
             body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
+            headers: { 
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json" 
             }
+            
         }).then((response) => {
             if (response.ok) {
-                alert('Signup successful');
-                window.location.reload();
+                alert('Your data was updated!');
+                onLoggedOut();
             } else {
                 console.log(data)
-                alert('Signup failed')
+                alert('Something Wrong')
             }
         });  
     };
 
     return (
-        <Form className='border border-3 rounded px-5 py-4' onSubmit={handleSubmit}>
-            <h2 className='text-center'>Sign up</h2>
+        <Form onSubmit={handleSubmit}>
+            <h2 className='text-center'>Update your profile</h2>
             <Form.Group controlId='formUsername'>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                     type='text'
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)}required
-                    minLength='3'
+                    onChange={(e) => setUsername(e.target.value)}
+                    minLength='5'
                 />
             </Form.Group>
 
@@ -53,7 +62,7 @@ export const SignupView = () => {
                 <Form.Control
                     type='password'
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}required
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </Form.Group>
 
@@ -62,7 +71,7 @@ export const SignupView = () => {
                 <Form.Control
                     type='email'
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}required
+                    onChange={(e) => setEmail(e.target.value)}
                 />
             </Form.Group>
 
@@ -71,7 +80,7 @@ export const SignupView = () => {
                 <Form.Control
                     type='date'
                     value={birthday}
-                    onChange={(e) => setBirthday(e.target.value)}required
+                    onChange={(e) => setBirthday(e.target.value)}
                 />
             </Form.Group>
 
