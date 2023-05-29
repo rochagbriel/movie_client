@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
+import { ProtectedRoutes } from "./protected-routes";
 import { Col, Row } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
@@ -95,10 +96,8 @@ export const MainView = () => {
                     <Route
                         path="/movies/:movieId"
                         element={
-                            <>
-                                {!user ? (
-                                    <Navigate to="/login" replace />
-                                ) : movies.length === 0 ? (
+                            <ProtectedRoutes user={user}>
+                                {movies.length === 0 ? (
                                     <Col>The list is empty!</Col>
                                 ) : (
                                     <Col md={8}>
@@ -110,16 +109,14 @@ export const MainView = () => {
                                         />
                                     </Col>
                                 )}
-                            </>
+                            </ProtectedRoutes>
                         }
                     />
                     <Route
                         path="/"
                         element={
-                            <>
-                                {!user ? (
-                                    <Navigate to="/login" replace />
-                                ) : movies.length === 0 ? (
+                            <ProtectedRoutes user={user}>
+                                {movies.length === 0 ? (
                                     <Col>The list is empty!</Col>
                                 ) : (
                                     <>
@@ -138,16 +135,14 @@ export const MainView = () => {
                                         ))}
                                     </>
                                 )}
-                            </>
+                            </ProtectedRoutes>
                         }
                     />
                     <Route
                         path="/profile"
                         element={
-                            <>
-                                {!user ? (
-                                    <Navigate to="/login" replace />
-                                ) : (
+                            <ProtectedRoutes user={user}>
+                                {
                                     <>
                                         <Col>
                                             <ProfileView
@@ -163,8 +158,8 @@ export const MainView = () => {
                                             />
                                         </Col>
                                     </>
-                                )}
-                            </>
+                                }
+                            </ProtectedRoutes>
                         }
                     />
                 </Routes>
