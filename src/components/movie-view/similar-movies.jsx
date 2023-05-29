@@ -2,7 +2,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { Row, Col } from "react-bootstrap";
 
 export const SimilarMovies = ({movies, movie}) => {
-    let similarMovies = movies.filter((m) => movie.genre === m.genre && m !== movie)
+    let similarMovies = movies.filter((m) => movie.genre === m.genre && m.id !== movie.id)
 
     return (
         <>

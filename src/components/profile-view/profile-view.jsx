@@ -1,7 +1,6 @@
 import { UserInfo } from "./user-info";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container } from "react-bootstrap";
 import { UserEdit } from "./user-edit";
-import { MovieCard } from "../movie-card/movie-card";
 import { Link } from "react-router-dom";
 import { FavoriteMovies } from "./favorite-movies";
 
@@ -36,8 +35,6 @@ export const ProfileView = ({
             <Col xxl={4} xl={5} lg={6} md={12} xs={12} className="px-4 text-primary">
                 <UserInfo user={user} />
                 <UserEdit
-                    user={user}
-                    token={token}
                     updateUser={updateUser}
                     onLoggedOut={onLoggedOut}
                 />
@@ -55,7 +52,7 @@ export const ProfileView = ({
                         }
                     }}
                 >
-                    Remove account permanenty
+                    Remove account permanently
                 </Link>
             </Col>
             <Container className="bg-light mb-4 px-4 rounded-4">
