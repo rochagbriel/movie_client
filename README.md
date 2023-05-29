@@ -1,16 +1,20 @@
 # MyFlix Client
 
-This is a Single Page made using React.js that will consume the API that I created in this repository: https://github.com/rochagbriel/movie_api .
+This is a Single Page App(SPA) made using React.js that will consume the API that I created in this repository: https://github.com/rochagbriel/movie_api .
 
 ## Technologies Used
 
 - HTML
-- CSS
+- SCSS
+- JavaScript
 - React.js
 
-**The following libraries were also used:**
+**The following tools were also used:**
 
 - Parcel
+- Redux
+- React-Bootstrap
+- npm
 
 ## Credits
 
