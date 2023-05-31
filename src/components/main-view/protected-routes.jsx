@@ -1,12 +1,12 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet } from 'react-router-dom';
 
 export const ProtectedRoutes = ({
-    user, 
-    children,
-    redirectPath = "/login"
+  user,
+  children,
+  redirectPath = '/login',
 }) => {
-    if (!user) {
-        return <Navigate to={redirectPath} replace />
-    }
-    return children ? children : <Outlet />;
-}
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  }
+  return children ? children : <Outlet />;
+};

@@ -1,17 +1,17 @@
-$primary: #2F2359;
+$primary: #2f2359;
 $secondary: #34c6bf;
 $light: #d4eeeb;
-$dark: #277A8C;
+$dark: #277a8c;
 $body-bg: #e5f4f2;
 
 @import '~bootstrap/scss/bootstrap.scss';
 
 /* Color Theme Swatches in Hex */
-$color-theme_MyFlix-Logo-1-hex: #2F2359;
-$color-theme_MyFlix-Logo-2-hex: #277A8C;
+$color-theme_MyFlix-Logo-1-hex: #2f2359;
+$color-theme_MyFlix-Logo-2-hex: #277a8c;
 $color-theme_MyFlix-Logo-3-hex: #34c6bf;
-$color-theme_MyFlix-Logo-4-hex: #8FD9D1;
-$color-theme_MyFlix-Logo-5-hex: #F2F2F2;
+$color-theme_MyFlix-Logo-4-hex: #8fd9d1;
+$color-theme_MyFlix-Logo-5-hex: #f2f2f2;
 
 // /* Color Theme Swatches in HSLA */
 // $color-theme_MyFlix-Logo-1-hsla: hsla(253, 43, 24, 1);
@@ -21,9 +21,10 @@ $color-theme_MyFlix-Logo-5-hex: #F2F2F2;
 // $color-theme_MyFlix-Logo-5-hsla: hsla(0, 0, 94, 1);
 
 .link-header-light {
-    color: $white
+  color: $white;
 }
 
-.link-header-light:hover, .link-header-light:focus-within {
-    color: $primary
+.link-header-light:hover,
+.link-header-light:focus-within {
+  color: $primary;
 }
