@@ -3,14 +3,13 @@ import { Col, Container } from 'react-bootstrap';
 import { UserEdit } from './user-edit';
 import { Link } from 'react-router-dom';
 import { FavoriteMovies } from './favorite-movies';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setToken } from '../../redux/reducers/user';
 
-export const ProfileView = ({
-  updateUser,
-  onLoggedOut,
-}) => {
+export const ProfileView = ({ updateUser }) => {
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.user.token);
+  const dispatch = useDispatch();
   const deleteAccount = () => {
     fetch(`https://myflix-88009.herokuapp.com/users/${user._id}`, {
       method: 'DELETE',
@@ -19,7 +18,7 @@ export const ProfileView = ({
       .then((response) => {
         if (response.ok) {
           alert('Your account has been deleted. Good Bye!');
-          onLoggedOut();
+          dispatch(setUser(null), setToken(null) ,localStorage.clear(), window.location.reload());
         } else {
           alert('Could not delete account');
         }
@@ -32,8 +31,8 @@ export const ProfileView = ({
   return (
     <>
       <Col xxl={4} xl={5} lg={6} md={12} xs={12} className='px-4 text-primary'>
-        <UserInfo user={user} />
-        <UserEdit updateUser={updateUser} onLoggedOut={onLoggedOut} />
+        <UserInfo />
+        <UserEdit updateUser={updateUser} />
         <Link
           className='link-danger text-decoration-none w-100 text-end fs-6'
           variant='link-danger'

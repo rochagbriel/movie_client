@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setToken } from '../../redux/reducers/user';
 
 export const UserEdit = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.user.token);
   const [username, setUsername] = useState('');
@@ -35,7 +37,7 @@ export const UserEdit = () => {
     }).then((response) => {
       if (response.ok) {
         alert('Your data was updated!');
-        onLoggedOut();
+        dispatch(setUser(null),setToken(null),localStorage.clear(),window.location.reload());
       } else {
         console.log(data);
         alert('Something Wrong');

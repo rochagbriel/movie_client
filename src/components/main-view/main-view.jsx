@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { MoviesList } from '../movies-list/movies-list';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
@@ -20,7 +20,7 @@ export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
 
   const updateUser = (user) => {
-    setUser(user);
+    dispatch(setUser(user));
     localStorage.setItem('user', JSON.stringify(user));
   };
 
