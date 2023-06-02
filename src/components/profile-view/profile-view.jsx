@@ -7,7 +7,6 @@ import { FavoriteMovies } from './favorite-movies';
 export const ProfileView = ({
   user,
   token,
-  movies,
   updateUser,
   onLoggedOut,
 }) => {
@@ -52,7 +51,7 @@ export const ProfileView = ({
         </Link>
       </Col>
       <Container className='bg-light mb-4 px-4 rounded-4'>
-        <FavoriteMovies movies={movies} user={user} />
+        <FavoriteMovies user={user} />
       </Container>
     </>
   );

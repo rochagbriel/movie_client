@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MovieCard } from '../movie-card/movie-card';
+import { MoviesList } from '../movies-list/movies-list';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
@@ -8,13 +8,16 @@ import { ProtectedRoutes } from './protected-routes';
 import { Col, Row } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
+import { setMovies } from '../../redux/reducers/movies';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const MainView = () => {
+  const dispatch = useDispatch();
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [movies, setMovies] = useState([]);
+  const movies = useSelector((state) => state.movies.list);
 
   const updateUser = (user) => {
     setUser(user);
@@ -39,7 +42,7 @@ export const MainView = () => {
             description: doc.Description,
           };
         });
-        setMovies(moviesFromApi);
+        dispatch(setMovies(moviesFromApi));
       });
   }, [token]);
 
@@ -102,7 +105,6 @@ export const MainView = () => {
                 ) : (
                   <Col md={8}>
                     <MovieView
-                      movies={movies}
                       user={user}
                       token={token}
                       updateUser={updateUser}
@@ -116,25 +118,9 @@ export const MainView = () => {
             path='/'
             element={
               <ProtectedRoutes user={user}>
-                {movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col
-                        className='mb-4'
-                        key={movie.id}
-                        xxl={3}
-                        xl={4}
-                        lg={4}
-                        md={6}
-                        xs={12}
-                      >
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))}
-                  </>
-                )}
+               
+                        <MoviesList />
+           
               </ProtectedRoutes>
             }
           />
@@ -148,7 +134,6 @@ export const MainView = () => {
                       <ProfileView
                         user={user}
                         token={token}
-                        movies={movies}
                         onLoggedOut={() => {
                           setUser(null);
                           setToken(null);

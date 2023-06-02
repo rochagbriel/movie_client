@@ -12,7 +12,7 @@ export const MoviesList = () => {
 
     return (
         <>
-            <Row>
+            <Row className="p-4">
                 <MoviesFilter />
             </Row>
             <Row>
@@ -20,7 +20,15 @@ export const MoviesList = () => {
                     <Col>The list is empty</Col>
                 ) : (
                     filteredMovies.map((movie) => (
-                        <Col className="mb-4" key={movie.id} md={3}>
+                        <Col 
+                            className="mb-4" 
+                            key={movie.id}           
+                            xxl={3}
+                            xl={4}
+                            lg={4}
+                            md={6}
+                            xs={12}
+                        >
                             <MovieCard movie={movie} />
                         </Col>
                     ))
