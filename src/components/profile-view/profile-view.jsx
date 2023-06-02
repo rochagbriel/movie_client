@@ -3,13 +3,14 @@ import { Col, Container } from 'react-bootstrap';
 import { UserEdit } from './user-edit';
 import { Link } from 'react-router-dom';
 import { FavoriteMovies } from './favorite-movies';
+import { useSelector } from 'react-redux';
 
 export const ProfileView = ({
-  user,
-  token,
   updateUser,
   onLoggedOut,
 }) => {
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const deleteAccount = () => {
     fetch(`https://myflix-88009.herokuapp.com/users/${user._id}`, {
       method: 'DELETE',
@@ -51,7 +52,7 @@ export const ProfileView = ({
         </Link>
       </Col>
       <Container className='bg-light mb-4 px-4 rounded-4'>
-        <FavoriteMovies user={user} />
+        <FavoriteMovies />
       </Container>
     </>
   );

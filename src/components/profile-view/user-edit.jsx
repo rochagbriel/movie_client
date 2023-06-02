@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
-export const UserEdit = ({ user, token, updateUser, onLoggedOut }) => {
+export const UserEdit = () => {
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');

@@ -10,13 +10,13 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { setMovies } from '../../redux/reducers/movies';
 import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../redux/reducers/user';
 
 export const MainView = () => {
   const dispatch = useDispatch();
-  const storedUser = JSON.parse(localStorage.getItem('user'));
-  const storedToken = localStorage.getItem('token');
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
+
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const movies = useSelector((state) => state.movies.list);
 
   const updateUser = (user) => {
@@ -50,15 +50,7 @@ export const MainView = () => {
     <BrowserRouter>
       <Row className='font-monospace'>
         <Col className='mb-4'>
-          <NavigationBar
-            user={user}
-            onLoggedOut={() => {
-              setUser(null);
-              setToken(null);
-              localStorage.clear();
-              window.location.reload();
-            }}
-          />
+          <NavigationBar />
         </Col>
       </Row>
       <Row className='justify-content-md-center font-monospace'>
@@ -85,12 +77,7 @@ export const MainView = () => {
                   <Navigate to='/' />
                 ) : (
                   <Col className='m-3' md={5}>
-                    <LoginView
-                      onLoggedIn={(user, token) => {
-                        setUser(user);
-                        setToken(token);
-                      }}
-                    />
+                    <LoginView />
                   </Col>
                 )}
               </>
@@ -99,16 +86,12 @@ export const MainView = () => {
           <Route
             path='/movies/:movieId'
             element={
-              <ProtectedRoutes user={user}>
+              <ProtectedRoutes>
                 {movies.length === 0 ? (
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView
-                      user={user}
-                      token={token}
-                      updateUser={updateUser}
-                    />
+                    <MovieView updateUser={updateUser} />
                   </Col>
                 )}
               </ProtectedRoutes>
@@ -117,33 +100,20 @@ export const MainView = () => {
           <Route
             path='/'
             element={
-              <ProtectedRoutes user={user}>
-               
+              <ProtectedRoutes>
                         <MoviesList />
-           
               </ProtectedRoutes>
             }
           />
           <Route
             path='/profile'
             element={
-              <ProtectedRoutes user={user}>
-                {
+              <ProtectedRoutes>
                   <>
                     <Col>
-                      <ProfileView
-                        user={user}
-                        token={token}
-                        onLoggedOut={() => {
-                          setUser(null);
-                          setToken(null);
-                          localStorage.clear();
-                        }}
-                        updateUser={updateUser}
-                      />
+                      <ProfileView updateUser={updateUser} />
                     </Col>
                   </>
-                }
               </ProtectedRoutes>
             }
           />

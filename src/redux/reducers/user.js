@@ -6,8 +6,8 @@ const storedToken = localStorage.getItem('token');
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        user: (storedUser ? storedUser : null),
-        token: (storedToken ? storedToken : null)
+        user: storedUser ? storedUser : null,
+        token: storedToken ? storedToken : null,
     },
     reducers: {
         setUser: (state, action) => {

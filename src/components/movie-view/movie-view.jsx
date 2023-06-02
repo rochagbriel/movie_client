@@ -5,8 +5,10 @@ import { useEffect, useState } from 'react';
 import { SimilarMovies } from './similar-movies';
 import { useSelector } from 'react-redux';
 
-export const MovieView = ({ user, token, updateUser }) => {
+export const MovieView = ({updateUser}) => {
   const movies = useSelector((state) => state.movies.list);
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const { movieId } = useParams();
 
   const movie = movies.find((m) => m.id === movieId);

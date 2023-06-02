@@ -1,6 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-export const UserInfo = ({ user }) => {
+export const UserInfo = () => {
+  const user = useSelector((state) => state.user.user);
   return (
     <>
       <h2 className='fs-3'>User details</h2>
