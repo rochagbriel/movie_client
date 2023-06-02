@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Form, Button, Link } from 'react-bootstrap';
 import { setUser, setToken } from '../../redux/reducers/user';
 import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router';
 
 export const LoginView = () => { // {onLoggedIn}
   const dispatch = useDispatch();
@@ -44,10 +44,10 @@ export const LoginView = () => { // {onLoggedIn}
 
   return (
     <Form
-      className='border border-3 border-secondary border-opacity-50 rounded px-5 py-4 text-primary'
+      className='border border-3 border-secondary border-opacity-50 rounded px-5 py-3 text-primary'
       onSubmit={handleSubmit}
     >
-      <h1 className='text-center fs-3'>Welcome to myFlix</h1>
+      <h1 className='text-center fs-3 m-4'>Welcome to myFlix</h1>
       <Form.Group controlId='formUsername'>
         <Form.Label>Username:</Form.Label>
         <Form.Control
@@ -61,7 +61,7 @@ export const LoginView = () => { // {onLoggedIn}
       </Form.Group>
 
       <Form.Group controlId='formPassword'>
-        <Form.Label className='mt-2'>Password:</Form.Label>
+        <Form.Label className='mt-3'>Password:</Form.Label>
         <Form.Control
           type='password'
           autoComplete='password'
@@ -73,6 +73,9 @@ export const LoginView = () => { // {onLoggedIn}
       <Button className='mt-3 w-100' variant='primary' type='submit'>
         Submit
       </Button>
+      <div className='text-end mt-3'>
+        <a className='text-decoration-none fs-6'  href='/signup'>Create a new Account</a>
+      </div>
     </Form>
   );
 };
