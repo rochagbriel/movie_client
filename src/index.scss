@@ -8,11 +8,11 @@ $font-family-monospace: 'M PLUS Rounded 1c', sans-serif;
 @import '~bootstrap/scss/bootstrap.scss';
 
 /* Color Theme Swatches in Hex */
-$color-theme_MyFlix-Logo-1-hex: #2f2359;
-$color-theme_MyFlix-Logo-2-hex: #277a8c;
-$color-theme_MyFlix-Logo-3-hex: #34c6bf;
-$color-theme_MyFlix-Logo-4-hex: #8fd9d1;
-$color-theme_MyFlix-Logo-5-hex: #f2f2f2;
+// $color-theme_MyFlix-Logo-1-hex: #2f2359;
+// $color-theme_MyFlix-Logo-2-hex: #277a8c;
+// $color-theme_MyFlix-Logo-3-hex: #34c6bf;
+// $color-theme_MyFlix-Logo-4-hex: #8fd9d1;
+// $color-theme_MyFlix-Logo-5-hex: #f2f2f2;
 
 // /* Color Theme Swatches in HSLA */
 // $color-theme_MyFlix-Logo-1-hsla: hsla(253, 43, 24, 1);
@@ -20,6 +20,12 @@ $color-theme_MyFlix-Logo-5-hex: #f2f2f2;
 // $color-theme_MyFlix-Logo-3-hsla: hsla(173, 57, 47, 1);
 // $color-theme_MyFlix-Logo-4-hsla: hsla(173, 49, 70, 1);
 // $color-theme_MyFlix-Logo-5-hsla: hsla(0, 0, 94, 1);
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
+
+:root {
+  --bs-body-font-family: "M PLUS Rounded 1c", "sans-serif";
+}
 
 .link-header-light {
   color: $white;

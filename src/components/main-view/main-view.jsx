@@ -48,12 +48,12 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <Row className='font-monospace'>
+      <Row>
         <Col className='mb-4'>
           <NavigationBar />
         </Col>
       </Row>
-      <Row className='justify-content-md-center font-monospace'>
+      <Row className='justify-content-md-center'>
         <Routes>
           <Route
             path='/signup'
