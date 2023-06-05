@@ -1,8 +1,14 @@
 import { Navbar, Container, Nav, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import myFlixLogo from '../../assets/img/myflix_logo.png';
+import { useSelector, useDispatch } from 'react-redux';
+import { setToken, setUser } from '../../redux/reducers/user';
+import { handleLogout } from '../handleLogout/handleLogout';
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+
+export const NavigationBar = () => {
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   return (
     <Navbar bg='secondary' className='rounded-3' expand='lg'>
       <Container>
@@ -36,7 +42,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                 <Nav.Link className='link-header-light' as={Link} to='/profile'>
                   Profile
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut} className='ms-lg-auto'>
+                <Nav.Link onClick={handleLogout} className='ms-lg-auto'>
                   Logout
                 </Nav.Link>
               </>

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { MovieCard } from '../movie-card/movie-card';
+import { useEffect } from 'react';
+import { MoviesList } from '../movies-list/movies-list';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
@@ -8,16 +8,19 @@ import { ProtectedRoutes } from './protected-routes';
 import { Col, Row } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
+import { setMovies } from '../../redux/reducers/movies';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../redux/reducers/user';
 
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem('user'));
-  const storedToken = localStorage.getItem('token');
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
+  const movies = useSelector((state) => state.movies.list);
 
   const updateUser = (user) => {
-    setUser(user);
+    dispatch(setUser(user));
     localStorage.setItem('user', JSON.stringify(user));
   };
 
@@ -39,7 +42,7 @@ export const MainView = () => {
             description: doc.Description,
           };
         });
-        setMovies(moviesFromApi);
+        dispatch(setMovies(moviesFromApi));
       });
   }, [token]);
 
@@ -47,15 +50,7 @@ export const MainView = () => {
     <BrowserRouter>
       <Row className='font-monospace'>
         <Col className='mb-4'>
-          <NavigationBar
-            user={user}
-            onLoggedOut={() => {
-              setUser(null);
-              setToken(null);
-              localStorage.clear();
-              window.location.reload();
-            }}
-          />
+          <NavigationBar />
         </Col>
       </Row>
       <Row className='justify-content-md-center font-monospace'>
@@ -82,12 +77,7 @@ export const MainView = () => {
                   <Navigate to='/' />
                 ) : (
                   <Col className='m-3' md={5}>
-                    <LoginView
-                      onLoggedIn={(user, token) => {
-                        setUser(user);
-                        setToken(token);
-                      }}
-                    />
+                    <LoginView />
                   </Col>
                 )}
               </>
@@ -96,17 +86,12 @@ export const MainView = () => {
           <Route
             path='/movies/:movieId'
             element={
-              <ProtectedRoutes user={user}>
+              <ProtectedRoutes>
                 {movies.length === 0 ? (
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView
-                      movies={movies}
-                      user={user}
-                      token={token}
-                      updateUser={updateUser}
-                    />
+                    <MovieView updateUser={updateUser} />
                   </Col>
                 )}
               </ProtectedRoutes>
@@ -115,50 +100,20 @@ export const MainView = () => {
           <Route
             path='/'
             element={
-              <ProtectedRoutes user={user}>
-                {movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col
-                        className='mb-4'
-                        key={movie.id}
-                        xxl={3}
-                        xl={4}
-                        lg={4}
-                        md={6}
-                        xs={12}
-                      >
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))}
-                  </>
-                )}
+              <ProtectedRoutes>
+                        <MoviesList />
               </ProtectedRoutes>
             }
           />
           <Route
             path='/profile'
             element={
-              <ProtectedRoutes user={user}>
-                {
+              <ProtectedRoutes>
                   <>
                     <Col>
-                      <ProfileView
-                        user={user}
-                        token={token}
-                        movies={movies}
-                        onLoggedOut={() => {
-                          setUser(null);
-                          setToken(null);
-                          localStorage.clear();
-                        }}
-                        updateUser={updateUser}
-                      />
+                      <ProfileView updateUser={updateUser} />
                     </Col>
                   </>
-                }
               </ProtectedRoutes>
             }
           />

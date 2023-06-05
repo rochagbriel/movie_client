@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { handleLogout } from '../handleLogout/handleLogout';
 
-export const UserEdit = ({ user, token, updateUser, onLoggedOut }) => {
+export const UserEdit = () => {
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -31,8 +35,8 @@ export const UserEdit = ({ user, token, updateUser, onLoggedOut }) => {
       },
     }).then((response) => {
       if (response.ok) {
-        alert('Your data was updated!');
-        onLoggedOut();
+        alert('Your data was updated, the page will reload now!');
+        handleLogout();
       } else {
         console.log(data);
         alert('Something Wrong');
