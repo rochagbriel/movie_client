@@ -48,7 +48,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <Row>
+      <Row sm={12}>
         <Col className='mb-4'>
           <NavigationBar />
         </Col>
@@ -62,7 +62,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to='/' />
                 ) : (
-                  <Col className='m-2' md={5}>
+                  <Col xs={12} sm={12} md={12} lg={6} xl={5} xxl={5} className='m-2'>
                     <SignupView />
                   </Col>
                 )}
@@ -76,7 +76,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to='/' />
                 ) : (
-                  <Col className='m-3' md={5}>
+                  <Col xs={12} sm={12} md={10} lg={6} xl={5} xxl={5} className='m-3'>
                     <LoginView />
                   </Col>
                 )}

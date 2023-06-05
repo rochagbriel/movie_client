@@ -1,13 +1,11 @@
 import { Navbar, Container, Nav, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import myFlixLogo from '../../assets/img/myflix_logo.png';
-import { useSelector, useDispatch } from 'react-redux';
-import { setToken, setUser } from '../../redux/reducers/user';
+import { useSelector } from 'react-redux';
 import { handleLogout } from '../handleLogout/handleLogout';
 
 export const NavigationBar = () => {
   const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
   return (
     <Navbar bg='secondary' className='rounded-3' expand='lg'>
       <Container>
