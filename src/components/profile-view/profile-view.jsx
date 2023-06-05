@@ -3,13 +3,12 @@ import { Col, Container } from 'react-bootstrap';
 import { UserEdit } from './user-edit';
 import { Link } from 'react-router-dom';
 import { FavoriteMovies } from './favorite-movies';
-import { useSelector, useDispatch } from 'react-redux';
-import { setUser, setToken } from '../../redux/reducers/user';
+import { useSelector } from 'react-redux';
+import { handleLogout } from '../handleLogout/handleLogout';
 
 export const ProfileView = ({ updateUser }) => {
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.user.token);
-  const dispatch = useDispatch();
   const deleteAccount = () => {
     fetch(`https://myflix-88009.herokuapp.com/users/${user._id}`, {
       method: 'DELETE',
@@ -18,7 +17,7 @@ export const ProfileView = ({ updateUser }) => {
       .then((response) => {
         if (response.ok) {
           alert('Your account has been deleted. Good Bye!');
-          dispatch(setUser(null), setToken(null) ,localStorage.clear(), window.location.reload());
+          handleLogout();
         } else {
           alert('Could not delete account');
         }

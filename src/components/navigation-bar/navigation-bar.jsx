@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import myFlixLogo from '../../assets/img/myflix_logo.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { setToken, setUser } from '../../redux/reducers/user';
+import { handleLogout } from '../handleLogout/handleLogout';
 
 
 export const NavigationBar = () => {
@@ -41,7 +42,7 @@ export const NavigationBar = () => {
                 <Nav.Link className='link-header-light' as={Link} to='/profile'>
                   Profile
                 </Nav.Link>
-                <Nav.Link onClick={() => dispatch(setUser(null),setToken(null),localStorage.clear(),window.location.reload())} className='ms-lg-auto'>
+                <Nav.Link onClick={handleLogout} className='ms-lg-auto'>
                   Logout
                 </Nav.Link>
               </>
