@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const moviesSlice = createSlice({
   name: 'movies',
@@ -12,8 +12,8 @@ const moviesSlice = createSlice({
     },
     setFilter: (state, action) => {
       state.filter = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export const { setMovies, setFilter } = moviesSlice.actions;

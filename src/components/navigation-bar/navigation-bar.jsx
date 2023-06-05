@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setToken, setUser } from '../../redux/reducers/user';
 import { handleLogout } from '../handleLogout/handleLogout';
 
-
 export const NavigationBar = () => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();

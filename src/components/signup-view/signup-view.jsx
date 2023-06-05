@@ -36,7 +36,10 @@ export const SignupView = () => {
   };
 
   return (
-    <Form className='border border-3 border-secondary border-opacity-50 rounded px-5 py-3 text-primary' onSubmit={handleSubmit}>
+    <Form
+      className='border border-3 border-secondary border-opacity-50 rounded px-5 py-3 text-primary'
+      onSubmit={handleSubmit}
+    >
       <h2 className='text-center'>Sign up</h2>
       <Form.Group controlId='formUsername'>
         <Form.Label className='mt-3'>Username:</Form.Label>
@@ -86,7 +89,9 @@ export const SignupView = () => {
         Submit
       </Button>
       <div className='text-end mt-3'>
-        <a className='text-decoration-none' href='/login'>Log in</a>
+        <a className='text-decoration-none' href='/login'>
+          Log in
+        </a>
       </div>
     </Form>
   );

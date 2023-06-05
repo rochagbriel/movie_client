@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { SimilarMovies } from './similar-movies';
 import { useSelector } from 'react-redux';
 
-export const MovieView = ({updateUser}) => {
+export const MovieView = ({ updateUser }) => {
   const movies = useSelector((state) => state.movies.list);
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.user.token);

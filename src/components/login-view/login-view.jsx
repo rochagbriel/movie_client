@@ -4,7 +4,8 @@ import { setUser, setToken } from '../../redux/reducers/user';
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router';
 
-export const LoginView = () => { // {onLoggedIn}
+export const LoginView = () => {
+  // {onLoggedIn}
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +32,7 @@ export const LoginView = () => { // {onLoggedIn}
         if (data.user) {
           localStorage.setItem('user', JSON.stringify(data.user));
           localStorage.setItem('token', data.token);
-          dispatch(setUser(data.user))
+          dispatch(setUser(data.user));
           dispatch(setToken(data.token));
         } else {
           alert('No such user');
@@ -74,7 +75,9 @@ export const LoginView = () => { // {onLoggedIn}
         Submit
       </Button>
       <div className='text-end mt-3'>
-        <a className='text-decoration-none fs-6'  href='/signup'>Create a new Account</a>
+        <a className='text-decoration-none fs-6' href='/signup'>
+          Create a new Account
+        </a>
       </div>
     </Form>
   );

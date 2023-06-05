@@ -101,7 +101,7 @@ export const MainView = () => {
             path='/'
             element={
               <ProtectedRoutes>
-                        <MoviesList />
+                <MoviesList />
               </ProtectedRoutes>
             }
           />
@@ -109,11 +109,11 @@ export const MainView = () => {
             path='/profile'
             element={
               <ProtectedRoutes>
-                  <>
-                    <Col>
-                      <ProfileView updateUser={updateUser} />
-                    </Col>
-                  </>
+                <>
+                  <Col>
+                    <ProfileView updateUser={updateUser} />
+                  </Col>
+                </>
               </ProtectedRoutes>
             }
           />
