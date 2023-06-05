@@ -36,10 +36,10 @@ export const SignupView = () => {
   };
 
   return (
-    <Form className='border border-3 rounded px-5 py-4' onSubmit={handleSubmit}>
+    <Form className='border border-3 border-secondary border-opacity-50 rounded px-5 py-3 text-primary' onSubmit={handleSubmit}>
       <h2 className='text-center'>Sign up</h2>
       <Form.Group controlId='formUsername'>
-        <Form.Label>Username:</Form.Label>
+        <Form.Label className='mt-3'>Username:</Form.Label>
         <Form.Control
           type='text'
           autoComplete='username'
@@ -51,7 +51,7 @@ export const SignupView = () => {
       </Form.Group>
 
       <Form.Group controlId='formPassword'>
-        <Form.Label>Password:</Form.Label>
+        <Form.Label className='mt-3'>Password:</Form.Label>
         <Form.Control
           type='password'
           autoComplete='new-password'
@@ -63,7 +63,7 @@ export const SignupView = () => {
       </Form.Group>
 
       <Form.Group controlId='formEmail'>
-        <Form.Label>Email:</Form.Label>
+        <Form.Label className='mt-3'>Email:</Form.Label>
         <Form.Control
           type='email'
           value={email}
@@ -73,7 +73,7 @@ export const SignupView = () => {
       </Form.Group>
 
       <Form.Group controlId='formBirthday'>
-        <Form.Label>Birthday:</Form.Label>
+        <Form.Label className='mt-3'>Birthdate:</Form.Label>
         <Form.Control
           type='date'
           value={birthday}
@@ -85,6 +85,9 @@ export const SignupView = () => {
       <Button className='mt-3 w-100' variant='primary' type='submit'>
         Submit
       </Button>
+      <div className='text-end mt-3'>
+        <a className='text-decoration-none' href='/login'>Log in</a>
+      </div>
     </Form>
   );
 };

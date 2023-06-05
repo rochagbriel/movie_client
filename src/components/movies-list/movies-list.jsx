@@ -12,7 +12,7 @@ export const MoviesList = () => {
 
     return (
         <>
-            <Row className="p-4">
+            <Row className="px-4 pb-3">
                 <MoviesFilter />
             </Row>
             <Row>
