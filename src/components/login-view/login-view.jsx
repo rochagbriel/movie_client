@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Button, Link } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { setUser, setToken } from '../../redux/reducers/user';
 import { useDispatch } from 'react-redux';
-import { Navigate } from 'react-router';
 
 export const LoginView = () => {
   // {onLoggedIn}

@@ -14,7 +14,7 @@ export const NavigationBar = () => {
             src={myFlixLogo}
             width='260'
             height='60'
-            className='d-inline-block align-top'
+            className='d-inline-block'
             alt='MyFlix logo'
           />
         </Navbar.Brand>
